@@ -6,3 +6,6 @@ export 'products_card.dart';
 export 'products_carousel.dart';
 export 'cart_product_card.dart';
 export 'order_summary.dart';
+export 'order_summary_product_card.dart';
+export 'apple_pay.dart';
+export 'google-pay.dart';

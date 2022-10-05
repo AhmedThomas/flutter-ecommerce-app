@@ -11,12 +11,13 @@ class AppRoutes {
   static const String catalogRoute = '/catalog';
   static const String wishlistRoute = '/wishlist';
   static const String checkoutRoute = '/checkout';
+  static const String orderConfirmRoute = '/order-confirmation';
+  static const String paymentRoute = '/payment-selection';
   static const String userRoute = '/user';
 }
 
 class RouteGenerator {
   static Route onGenerateRoute(RouteSettings settings) {
-    print('Route: ${settings.name}');
     switch (settings.name) {
       case '/':
         return SplashScreen.route();
@@ -32,10 +33,10 @@ class RouteGenerator {
         return WishlistScreen.route();
       case AppRoutes.checkoutRoute:
         return CheckoutScreen.route();
-      // case OrderConfirmation.routeName:
-      //   return OrderConfirmation.route();
-      // case PaymentSelection.routeName:
-      //   return PaymentSelection.route();
+      case AppRoutes.orderConfirmRoute:
+        return OrderConfirmation.route();
+      case AppRoutes.paymentRoute:
+        return PaymentSelection.route();
       default:
         return unDefinedRoute();
     }

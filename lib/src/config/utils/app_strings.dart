@@ -9,6 +9,8 @@ class AppStrings {
   static const cartTitle = 'Cart';
   static const wishlistTitle = 'Wishlist';
   static const checkoutTitle = 'Checkout';
+  static const orderConfirmTitle = 'Order Confirmation';
+  static const paymentTitle = 'Payment Selection';
 
   // HomeScreen titles
   static const recommendedProducts = 'RECOMMENDED';
@@ -25,6 +27,9 @@ class AppStrings {
   static const countryField = 'Country';
   static const cityField = 'City';
   static const zipField = 'Zip Code';
+
+  // order confirmation titles
+  static const orderComplete = 'Your order is complete!';
 
   // Nav buttons
   static const addToCart = 'Add To Cart';

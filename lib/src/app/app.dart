@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => WishlistBloc()..add(StartWishlist())),
+        BlocProvider(create: (_) => WishlistBloc()..add(LoadWishlist())),
         BlocProvider(
             create: (_) => CategoryBloc(
                   categoryRepository: CategoryRepository(),
@@ -21,10 +21,12 @@ class MyApp extends StatelessWidget {
             create: (_) => ProductBloc(
                   productRepository: ProductRepository(),
                 )..add(LoadProducts())),
-        BlocProvider(create: (_) => CartBloc()..add(CartStarted())),
+        BlocProvider(create: (_) => CartBloc()..add(LoadCart())),
+        BlocProvider(create: (_) => PaymentBloc()..add(LoadPaymentMethod())),
         BlocProvider(
             create: (context) => CheckoutBloc(
                   cartBloc: context.read<CartBloc>(),
+                  paymentBloc: context.read<PaymentBloc>(),
                   checkoutRepository: CheckoutRepository(),
                 )),
       ],

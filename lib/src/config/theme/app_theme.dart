@@ -11,7 +11,7 @@ ThemeData getApplicationTheme() {
     textTheme: TextTheme(
       headline1: getBoldStyle(color: AppColors.primary, fontSize: FontSize.s22),
       headline2:
-          getBoldStyle(color: AppColors.secondary, fontSize: FontSize.s24),
+          getBoldStyle(color: AppColors.secondary, fontSize: FontSize.s20),
       headline3: getBoldStyle(color: AppColors.primary, fontSize: FontSize.s18),
       headline4: getBoldStyle(color: AppColors.primary, fontSize: FontSize.s16),
       headline5:

@@ -81,8 +81,10 @@ class ProductsCard extends StatelessWidget {
                     BlocBuilder<CartBloc, CartState>(
                       builder: (context, state) {
                         if (state is CartLoading) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.secondary,
+                            ),
                           );
                         }
                         if (state is CartLoaded) {
@@ -91,7 +93,7 @@ class ProductsCard extends StatelessWidget {
                               onPressed: () {
                                 context
                                     .read<CartBloc>()
-                                    .add(CartProductAdded(product));
+                                    .add(AddProduct(product));
                                 const snackBar = SnackBar(
                                     content: Text(AppStrings.addedCart));
                                 ScaffoldMessenger.of(context)

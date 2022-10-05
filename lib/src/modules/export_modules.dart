@@ -5,3 +5,5 @@ export 'checkout/checkout.dart';
 export 'category/category.dart';
 export 'wishlist/wishlist.dart';
 export 'splash/splash.dart';
+export 'order_confirmation/order_confirmation.dart';
+export 'payment-selection/payment.dart';

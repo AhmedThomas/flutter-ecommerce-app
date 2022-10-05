@@ -72,6 +72,47 @@ class CheckoutScreen extends StatelessWidget {
                           .read<CheckoutBloc>()
                           .add(UpdateCheckout(zipCode: value));
                     }, context, AppStrings.zipField),
+                    const SizedBox(height: 10),
+                    Container(
+                      height: 60,
+                      alignment: Alignment.bottomCenter,
+                      decoration: BoxDecoration(color: AppColors.primary),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Center(
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.paymentRoute,
+                                );
+                              },
+                              child: Text(
+                                'SELECT A PAYMENT METHOD',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline3!
+                                    .copyWith(color: AppColors.secondary),
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.paymentRoute,
+                              );
+                            },
+                            icon: Icon(
+                              Icons.arrow_forward,
+                              color: AppColors.secondary,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
                     Text(
                       AppStrings.orderSummary.toUpperCase(),
                       style: Theme.of(context).textTheme.headline3,

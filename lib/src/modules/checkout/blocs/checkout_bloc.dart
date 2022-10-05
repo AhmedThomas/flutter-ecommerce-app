@@ -10,14 +10,18 @@ part 'checkout_state.dart';
 
 class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
   final CartBloc _cartBloc;
+  final PaymentBloc _paymentBloc;
   final CheckoutRepository _checkoutRepository;
   StreamSubscription? _cartSubscription;
+  StreamSubscription? _paymentSubscription;
   StreamSubscription? _checkoutSubscription;
 
   CheckoutBloc({
     required CartBloc cartBloc,
+    required PaymentBloc paymentBloc,
     required CheckoutRepository checkoutRepository,
   })  : _cartBloc = cartBloc,
+        _paymentBloc = paymentBloc,
         _checkoutRepository = checkoutRepository,
         super(cartBloc.state is CartLoaded
             ? CheckoutLoaded(
@@ -28,56 +32,64 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
                 total: (cartBloc.state as CartLoaded).cart.totalString,
               )
             : CheckoutLoading()) {
-    _cartSubscription = cartBloc.stream.listen((state) {
+    on<UpdateCheckout>(_onUpdateCheckout);
+    on<ConfirmCheckout>(_onConfirmCheckout);
+
+    _cartSubscription = _cartBloc.stream.listen((state) {
       if (state is CartLoaded) {
         add(UpdateCheckout(cart: state.cart));
       }
     });
+
+    _paymentSubscription = _paymentBloc.stream.listen((state) {
+      if (state is PaymentLoaded) {
+        add(UpdateCheckout(paymentMethod: state.paymentMethod));
+      }
+    });
   }
 
-  @override
-  Stream<CheckoutState> mapEventToState(
-    CheckoutEvent event,
-  ) async* {
-    if (event is UpdateCheckout) {
-      yield* _mapUpdateCheckoutToState(event, state);
-    }
-    if (event is ConfirmCheckout) {
-      yield* _mapConfirmCheckoutToState(event, state);
-    }
-  }
-
-  Stream<CheckoutState> _mapUpdateCheckoutToState(
+  void _onUpdateCheckout(
     UpdateCheckout event,
-    CheckoutState state,
-  ) async* {
+    Emitter<CheckoutState> emit,
+  ) {
+    final state = this.state;
     if (state is CheckoutLoaded) {
-      yield CheckoutLoaded(
-        email: event.email ?? state.email,
-        fullName: event.fullName ?? state.fullName,
-        products: event.cart?.products ?? state.products,
-        subtotal: event.cart?.subtotalString ?? state.subtotal,
-        deliveryFee: event.cart?.deliveryFeeString ?? state.deliveryFee,
-        total: event.cart?.totalString ?? state.total,
-        address: event.address ?? state.address,
-        city: event.city ?? state.city,
-        country: event.country ?? state.country,
-        zipCode: event.zipCode ?? state.zipCode,
+      emit(
+        CheckoutLoaded(
+          email: event.email ?? state.email,
+          fullName: event.fullName ?? state.fullName,
+          products: event.cart?.products ?? state.products,
+          subtotal: event.cart?.subtotalString ?? state.subtotal,
+          deliveryFee: event.cart?.deliveryFeeString ?? state.deliveryFee,
+          total: event.cart?.totalString ?? state.total,
+          address: event.address ?? state.address,
+          city: event.city ?? state.city,
+          country: event.country ?? state.country,
+          zipCode: event.zipCode ?? state.zipCode,
+          paymentMethod: event.paymentMethod ?? state.paymentMethod,
+        ),
       );
     }
   }
 
-  Stream<CheckoutState> _mapConfirmCheckoutToState(
+  void _onConfirmCheckout(
     ConfirmCheckout event,
-    CheckoutState state,
-  ) async* {
+    Emitter<CheckoutState> emit,
+  ) async {
+    final state = this.state;
     _checkoutSubscription?.cancel();
     if (state is CheckoutLoaded) {
       try {
         await _checkoutRepository.addCheckout(event.checkout);
-        print('Done');
-        yield CheckoutLoading();
+        emit(CheckoutLoading());
       } catch (_) {}
     }
+  }
+
+  @override
+  Future<void> close() {
+    _cartSubscription?.cancel();
+    _paymentSubscription?.cancel();
+    return super.close();
   }
 }
