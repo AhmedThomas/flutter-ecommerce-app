@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../config/config.dart';
-import '../modules/export_modules.dart';
+import '../../../config/config.dart';
+import '../../export_modules.dart';
 
 class ProductsCard extends StatelessWidget {
   final Product product;

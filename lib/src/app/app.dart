@@ -12,7 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => WishlistBloc()..add(LoadWishlist())),
+        BlocProvider(
+            create: (_) => WishlistBloc(
+                  localStorageRepository: LocalStorageRepository(),
+                )..add(StartWishlist())),
         BlocProvider(
             create: (_) => CategoryBloc(
                   categoryRepository: CategoryRepository(),
@@ -21,7 +24,10 @@ class MyApp extends StatelessWidget {
             create: (_) => ProductBloc(
                   productRepository: ProductRepository(),
                 )..add(LoadProducts())),
-        BlocProvider(create: (_) => CartBloc()..add(LoadCart())),
+        BlocProvider(
+            create: (_) => CartBloc(
+                  localStorageRepository: LocalStorageRepository(),
+                )..add(LoadCart())),
         BlocProvider(create: (_) => PaymentBloc()..add(LoadPaymentMethod())),
         BlocProvider(
             create: (context) => CheckoutBloc(
@@ -31,7 +37,7 @@ class MyApp extends StatelessWidget {
                 )),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Ecommerce App',
         debugShowCheckedModeBanner: false,
         theme: getApplicationTheme(),
         onGenerateRoute: RouteGenerator.onGenerateRoute,

@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pay/pay.dart';
 
-import '../config/config.dart';
-import '../modules/export_modules.dart';
+import '../../../config/config.dart';
+import '../../export_modules.dart';
 
 class ApplePay extends StatelessWidget {
   const ApplePay({required this.products, required this.total, super.key});

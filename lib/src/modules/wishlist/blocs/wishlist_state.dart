@@ -18,4 +18,7 @@ class WishlistLoaded extends WishlistState {
   List<Object> get props => [wishlist];
 }
 
-class WishlistError extends WishlistState {}
+class WishlistError extends WishlistState {
+  @override
+  List<Object> get props => [];
+}

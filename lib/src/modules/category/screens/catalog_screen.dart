@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../config/config.dart';
 import '../../export_modules.dart';
-import '../../../widgets/widgets.dart';
 
 class CategoryScreen extends StatelessWidget {
   static Route route({required Category category}) {

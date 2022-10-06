@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../config/config.dart';
-import '../modules/export_modules.dart';
+import '../../../config/config.dart';
+import '../../export_modules.dart';
 
 class OrderSummaryProductCard extends StatelessWidget {
   const OrderSummaryProductCard({

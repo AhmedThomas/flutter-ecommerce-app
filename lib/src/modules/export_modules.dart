@@ -6,4 +6,5 @@ export 'category/category.dart';
 export 'wishlist/wishlist.dart';
 export 'splash/splash.dart';
 export 'order_confirmation/order_confirmation.dart';
-export 'payment-selection/payment.dart';
+export 'payment_selection/payment.dart';
+export 'shared/shared.dart';
