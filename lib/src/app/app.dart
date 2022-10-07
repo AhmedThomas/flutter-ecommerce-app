@@ -10,38 +10,55 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-            create: (_) => WishlistBloc(
-                  localStorageRepository: LocalStorageRepository(),
-                )..add(StartWishlist())),
-        BlocProvider(
-            create: (_) => CategoryBloc(
-                  categoryRepository: CategoryRepository(),
-                )..add(LoadCategories())),
-        BlocProvider(
-            create: (_) => ProductBloc(
-                  productRepository: ProductRepository(),
-                )..add(LoadProducts())),
-        BlocProvider(
-            create: (_) => CartBloc(
-                  localStorageRepository: LocalStorageRepository(),
-                )..add(LoadCart())),
-        BlocProvider(create: (_) => PaymentBloc()..add(LoadPaymentMethod())),
-        BlocProvider(
-            create: (context) => CheckoutBloc(
-                  cartBloc: context.read<CartBloc>(),
-                  paymentBloc: context.read<PaymentBloc>(),
-                  checkoutRepository: CheckoutRepository(),
-                )),
-      ],
-      child: MaterialApp(
-        title: 'Ecommerce App',
-        debugShowCheckedModeBanner: false,
-        theme: getApplicationTheme(),
-        onGenerateRoute: RouteGenerator.onGenerateRoute,
-        initialRoute: AppRoutes.splashRoute,
+    return MaterialApp(
+      title: 'Ecommerce App',
+      debugShowCheckedModeBanner: false,
+      theme: getApplicationTheme(),
+      home: MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider(create: (context) => AuthRepository()),
+          RepositoryProvider(create: (context) => UserRepository()),
+        ],
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+                create: (context) => AuthBloc(
+                      authRepository: context.read<AuthRepository>(),
+                      userRepository: context.read<UserRepository>(),
+                    )),
+            BlocProvider(
+                create: (_) => WishlistBloc(
+                      localStorageRepository: LocalStorageRepository(),
+                    )..add(StartWishlist())),
+            BlocProvider(
+                create: (_) => CategoryBloc(
+                      categoryRepository: CategoryRepository(),
+                    )..add(LoadCategories())),
+            BlocProvider(
+                create: (_) => ProductBloc(
+                      productRepository: ProductRepository(),
+                    )..add(LoadProducts())),
+            BlocProvider(
+                create: (_) => CartBloc(
+                      localStorageRepository: LocalStorageRepository(),
+                    )..add(LoadCart())),
+            BlocProvider(
+                create: (_) => PaymentBloc()..add(LoadPaymentMethod())),
+            BlocProvider(
+                create: (context) => CheckoutBloc(
+                      cartBloc: context.read<CartBloc>(),
+                      paymentBloc: context.read<PaymentBloc>(),
+                      checkoutRepository: CheckoutRepository(),
+                    )),
+          ],
+          child: MaterialApp(
+            title: 'Ecommerce App',
+            debugShowCheckedModeBanner: false,
+            theme: getApplicationTheme(),
+            onGenerateRoute: RouteGenerator.onGenerateRoute,
+            initialRoute: AppRoutes.splashRoute,
+          ),
+        ),
       ),
     );
   }

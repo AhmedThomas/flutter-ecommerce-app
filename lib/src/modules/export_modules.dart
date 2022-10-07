@@ -8,3 +8,4 @@ export 'splash/splash.dart';
 export 'order_confirmation/order_confirmation.dart';
 export 'payment_selection/payment.dart';
 export 'shared/shared.dart';
+export 'auth/auth.dart';

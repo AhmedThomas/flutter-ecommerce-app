@@ -20,6 +20,8 @@ class Product extends Equatable {
   final bool isRecommended;
   @HiveField(6)
   final bool isPopular;
+  @HiveField(7)
+  final String? description;
 
   const Product({
     required this.id,
@@ -29,17 +31,20 @@ class Product extends Equatable {
     required this.price,
     required this.isRecommended,
     required this.isPopular,
+    this.description,
   });
 
   static Product fromSnapshot(DocumentSnapshot snap) {
     Product product = Product(
-        id: snap.id,
-        name: snap['name'],
-        category: snap['category'],
-        imageUrl: snap['imageUrl'],
-        price: snap['price'],
-        isRecommended: snap['isRecommended'],
-        isPopular: snap['isPopular']);
+      id: snap.id,
+      name: snap['name'],
+      category: snap['category'],
+      imageUrl: snap['imageUrl'],
+      price: snap['price'],
+      isRecommended: snap['isRecommended'],
+      isPopular: snap['isPopular'],
+      description: snap['description'],
+    );
     return product;
   }
 
@@ -52,6 +57,7 @@ class Product extends Equatable {
         price,
         isRecommended,
         isPopular,
+        description,
       ];
 
   static List<Product> products = [

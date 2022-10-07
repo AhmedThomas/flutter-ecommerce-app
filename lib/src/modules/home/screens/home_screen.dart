@@ -58,10 +58,12 @@ class HomeScreen extends StatelessWidget {
                 );
               }
               if (state is ProductLoaded) {
-                return ProductsCarousel(
-                  products: Product.products
-                      .where((product) => product.isRecommended)
-                      .toList(),
+                return Expanded(
+                  child: ProductsCarousel(
+                    products: state.products
+                        .where((product) => product.isRecommended)
+                        .toList(),
+                  ),
                 );
               } else {
                 return const Text(AppStrings.errorMessage);
@@ -77,10 +79,12 @@ class HomeScreen extends StatelessWidget {
                 );
               }
               if (state is ProductLoaded) {
-                return ProductsCarousel(
-                  products: Product.products
-                      .where((product) => product.isPopular)
-                      .toList(),
+                return Expanded(
+                  child: ProductsCarousel(
+                    products: state.products
+                        .where((product) => product.isPopular)
+                        .toList(),
+                  ),
                 );
               } else {
                 return const Text(AppStrings.errorMessage);
