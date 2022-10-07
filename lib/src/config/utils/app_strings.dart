@@ -11,6 +11,7 @@ class AppStrings {
   static const checkoutTitle = 'Checkout';
   static const orderConfirmTitle = 'Order Confirmation';
   static const paymentTitle = 'Payment Selection';
+  static const profileTitle = 'Profile';
 
   // HomeScreen titles
   static const recommendedProducts = 'RECOMMENDED';

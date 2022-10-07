@@ -13,7 +13,9 @@ class AppRoutes {
   static const String checkoutRoute = '/checkout';
   static const String orderConfirmRoute = '/order-confirmation';
   static const String paymentRoute = '/payment-selection';
-  static const String userRoute = '/user';
+  static const String profileRoute = '/profile';
+  static const String loginRoute = '/login';
+  static const String registerRoute = '/register';
 }
 
 class RouteGenerator {
@@ -37,6 +39,13 @@ class RouteGenerator {
         return OrderConfirmation.route();
       case AppRoutes.paymentRoute:
         return PaymentSelection.route();
+      case AppRoutes.profileRoute:
+        return ProfileScreen.route();
+      case AppRoutes.loginRoute:
+        return LoginScreen.route();
+      case AppRoutes.registerRoute:
+        return RegisterScreen.route();
+
       default:
         return unDefinedRoute();
     }

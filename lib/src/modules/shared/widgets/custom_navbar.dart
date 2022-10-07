@@ -41,7 +41,7 @@ class HomeNavBar extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.userRoute);
+                Navigator.pushNamed(context, AppRoutes.profileRoute);
               },
               icon: const Icon(
                 Icons.person,

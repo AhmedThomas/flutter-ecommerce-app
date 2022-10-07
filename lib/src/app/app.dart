@@ -16,8 +16,11 @@ class MyApp extends StatelessWidget {
       theme: getApplicationTheme(),
       home: MultiRepositoryProvider(
         providers: [
-          RepositoryProvider(create: (context) => AuthRepository()),
           RepositoryProvider(create: (context) => UserRepository()),
+          RepositoryProvider(
+              create: (context) => AuthRepository(
+                    userRepository: context.read<UserRepository>(),
+                  )),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -49,6 +52,14 @@ class MyApp extends StatelessWidget {
                       cartBloc: context.read<CartBloc>(),
                       paymentBloc: context.read<PaymentBloc>(),
                       checkoutRepository: CheckoutRepository(),
+                    )),
+            BlocProvider(
+                create: (context) => LoginCubit(
+                      authRepository: context.read<AuthRepository>(),
+                    )),
+            BlocProvider(
+                create: (context) => RegisterCubit(
+                      authRepository: context.read<AuthRepository>(),
                     )),
           ],
           child: MaterialApp(
