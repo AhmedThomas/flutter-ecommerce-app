@@ -42,6 +42,10 @@ class MyApp extends StatelessWidget {
                       productRepository: ProductRepository(),
                     )..add(LoadProducts())),
             BlocProvider(
+                create: (context) =>
+                    SearchBloc(productBloc: context.read<ProductBloc>())
+                      ..add(LoadSearch())),
+            BlocProvider(
                 create: (_) => CartBloc(
                       localStorageRepository: LocalStorageRepository(),
                     )..add(LoadCart())),
