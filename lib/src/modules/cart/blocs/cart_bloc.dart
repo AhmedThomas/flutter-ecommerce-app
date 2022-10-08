@@ -23,7 +23,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     try {
       Box box = await _localStorageRepository.openCartBox();
       List<Product> products = _localStorageRepository.getCart(box);
-      await Future<void>.delayed(const Duration(seconds: 1));
+      // await Future<void>.delayed(const Duration(seconds: 1));
       emit(CartLoaded(
         cart: Cart(products: products),
       ));

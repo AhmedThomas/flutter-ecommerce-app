@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "620677969417-73tnv1skrqsphp4o67nsdrgmusj6i0ub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ecommerce_app",
+            "certificate_hash": "be29e92cd78f24a7c4566c46ce1d6c6d832ffc63"
+          }
+        },
+        {
           "client_id": "620677969417-hoerul7bbp7klbrffpgl7a6qk74b6crp.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,49 @@
             {
               "client_id": "620677969417-hoerul7bbp7klbrffpgl7a6qk74b6crp.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "620677969417-6nurctd03cnkkleqb43qdjg1mipf3rep.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ecommerceApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620677969417:android:1b99c0237943e622f2ead8",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce_app_backend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620677969417-hoerul7bbp7klbrffpgl7a6qk74b6crp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLMOmzUNAmwdW05fPydyL3aeEEaBxlSOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620677969417-hoerul7bbp7klbrffpgl7a6qk74b6crp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "620677969417-6nurctd03cnkkleqb43qdjg1mipf3rep.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ecommerceApp"
+              }
             }
           ]
         }

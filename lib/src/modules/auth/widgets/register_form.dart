@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../config/config.dart';
+import '../../export_modules.dart';
 
 class UserInput extends StatelessWidget {
   const UserInput({
@@ -12,9 +16,21 @@ class UserInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onChanged: onChanged,
-      decoration: InputDecoration(labelText: labelText),
+    return BlocBuilder<RegisterCubit, RegisterState>(
+      builder: (context, state) {
+        return TextField(
+          onChanged: onChanged,
+          decoration: InputDecoration(
+            labelText: labelText,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: AppColors.grey)),
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: AppColors.error),
+            ),
+          ),
+        );
+      },
     );
   }
 }

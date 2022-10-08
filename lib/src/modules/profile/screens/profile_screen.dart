@@ -31,13 +31,13 @@ class ProfileScreen extends StatelessWidget {
       appBar: const CustomAppBar(title: AppStrings.profileTitle),
       body: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
-          if (state is ProductLoading) {
+          if (state is ProfileLoading) {
             return Center(
                 child: Platform.isIOS
                     ? CupertinoActivityIndicator(color: AppColors.primary)
                     : CircularProgressIndicator(color: AppColors.primary));
           }
-          if (state is ProductLoaded) {
+          if (state is ProfileLoaded) {
             return Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(

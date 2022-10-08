@@ -4,6 +4,7 @@ import '../config.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(
+    colorScheme: ColorScheme.fromSwatch().copyWith(primary: AppColors.primary),
     scaffoldBackgroundColor: AppColors.secondary,
     fontFamily: 'Montserrat',
 
